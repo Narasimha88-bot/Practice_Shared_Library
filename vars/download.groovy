@@ -15,5 +15,5 @@ stage('Download Latest Snapshot WAR') {
                     '''
                 }
             }
-}
+   }
 }
