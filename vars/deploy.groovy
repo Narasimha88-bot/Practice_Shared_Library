@@ -1,15 +1,13 @@
 def call() {
 
-    stage('Deploy') {
-        echo 'Deploying application...'
-
-        configFileProvider([
-            configFile(
-                fileId: 'ba1cfde0-e4e7-4537-8b4a-e05c48350215',
-                variable: 'MAVEN_SETTINGS'
-            )
-        ]) {
-            sh 'mvn deploy -s "$MAVEN_SETTINGS"'
-        }
-    }
+    stage('Build & Push to Artifactory') {
+            steps {
+                configFileProvider([configFile(fileId: 'aa6e5af3-b7b5-4c85-a784-24b381b1708a', variable: 'MAVEN_SETTINGS')]) {
+                    sh '''
+                    echo "🔨 Building & pushing to Artifactory..."
+                    mvn clean deploy -s $MAVEN_SETTINGS
+                    '''
+                }
+            }
+}
 }
