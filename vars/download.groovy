@@ -1,6 +1,8 @@
 def call() {
 
+
 stage('Download Latest Snapshot WAR and deploy to Tomcat') {
+ 
                 configFileProvider([configFile(fileId: 'f0b88328-4641-4449-a033-39621f26353b', variable: 'MAVEN_SETTINGS')]) {
                     sh '''
                     echo "📦 Downloading latest snapshot WAR..."
@@ -16,4 +18,5 @@ stage('Download Latest Snapshot WAR and deploy to Tomcat') {
                     '''
                 }
             }
-   }
+}
+   
